@@ -11,9 +11,7 @@ WITH top_paying_jobs AS (
         job_id,
         job_title,
         job_location,
-        job_schedule_type,
         salary_year_avg,
-        job_posted_date,
         name AS company_name
 
     FROM 
@@ -33,11 +31,10 @@ WITH top_paying_jobs AS (
 
 SELECT 
     top_paying_jobs.*,
-    skills_dim.skills
-
+    skills
 FROM top_paying_jobs
 
 INNER JOIN skills_job_dim
     ON top_paying_jobs.job_id = skills_job_dim.job_id
 INNER JOIN skills_dim
-    ON skills_job_dim.skill_id = skills_dim.skill_id
+    ON skills_job_dim.skill_id = skills_dim.skill_id;
